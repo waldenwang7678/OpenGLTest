@@ -22,7 +22,6 @@ public class DrawGraphActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw_graph);
-
         initData();
         initView();
     }
@@ -54,18 +53,30 @@ public class DrawGraphActivity extends AppCompatActivity {
             }
         });
         list.setAdapter(adapter);
-        glView.setRenderer(new Triangle());
-
+        // glView.setRenderer(new Triangle());
+        glView.setShape(Triangle.class);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        //glView.setRenderer(new Triangle(view));
+                        glView.setShape(Triangle.class);
                         break;
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        glView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        glView.onPause();
     }
 }
