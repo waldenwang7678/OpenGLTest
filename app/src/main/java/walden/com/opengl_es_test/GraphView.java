@@ -1,14 +1,11 @@
 package walden.com.opengl_es_test;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 
 import walden.com.opengl_es_test.shape.FGLRender;
-import walden.com.opengl_es_test.shape.shape;
+import walden.com.opengl_es_test.shape.Shape;
 
 public class GraphView extends GLSurfaceView {
     private FGLRender renderer;
@@ -28,7 +25,7 @@ public class GraphView extends GLSurfaceView {
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 
-    public void setShape(Class<? extends shape> clazz) {
+    public void setShape(Class<? extends Shape> clazz) {
         try {
             renderer.setShape(clazz);
         } catch (Exception e) {

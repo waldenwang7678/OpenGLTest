@@ -1,6 +1,8 @@
 package walden.com.opengl_es_test;
 
+import android.app.ActivityManager;
 import android.content.Intent;
+import android.content.pm.ConfigurationInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView list_main;
     ArrayList<MenuBean> mData = new ArrayList<>();
+    private TextView text2;
 
     /**
      * openGLES 2.0
@@ -34,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
         add("图形绘制", DrawGraphActivity.class);
-        add("图形绘制", DrawGraphActivity.class);
 
     }
 
     private void initView() {
+        text2 = (TextView) findViewById(R.id.text2);
         list_main = (ListView) findViewById(R.id.list_main);
         CommenListAdapter<MenuBean> adapter = new CommenListAdapter<>(mData);
         adapter.setmCallback(new CommenListAdapter.AdapterCallback() {
@@ -65,5 +68,18 @@ public class MainActivity extends AppCompatActivity {
         bean.name = name;
         bean.clazz = clazz;
         mData.add(bean);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        final ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        final ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
+        boolean supportsEs2 = configurationInfo.reqGlEsVersion >= 0x2000;
+        if (supportsEs2) {
+            text2.setText("支持");
+        } else {
+            text2.setText("不支持");
+        }
     }
 }

@@ -8,15 +8,15 @@ import android.view.View;
  * Created by Administrator on 2017/6/9 0009.
  */
 
-public abstract class shape implements GLSurfaceView.Renderer {
+public abstract class Shape implements GLSurfaceView.Renderer {
 
     protected View mView;
 
-    public shape(View view) {
+    public Shape(View view) {
         this.mView = view;
     }
 
-    public shape() {
+    public Shape() {
 
     }
 

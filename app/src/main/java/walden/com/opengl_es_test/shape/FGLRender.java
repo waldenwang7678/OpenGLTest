@@ -12,16 +12,16 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Description:
  */
-public class FGLRender extends shape {
+public class FGLRender extends Shape {
 
-    private shape shape;
-    private Class<? extends shape> clazz = Cube.class;
+    private Shape shape;
+    private Class<? extends Shape> clazz = Cube.class;
 
     public FGLRender(View mView) {
         super(mView);
     }
 
-    public void setShape(Class<? extends shape> shape) {
+    public void setShape(Class<? extends Shape> shape) {
         this.clazz = shape;
     }
 
@@ -31,7 +31,7 @@ public class FGLRender extends shape {
         try {
             Constructor constructor = clazz.getDeclaredConstructor(View.class);
             constructor.setAccessible(true);
-            shape = (shape) constructor.newInstance(mView);
+            shape = (Shape) constructor.newInstance(mView);
         } catch (Exception e) {
             e.printStackTrace();
             shape = new Cube(mView);

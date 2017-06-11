@@ -11,8 +11,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import walden.com.opengl_es_test.adapter.CommenListAdapter;
+import walden.com.opengl_es_test.shape.Ball;
+import walden.com.opengl_es_test.shape.BallWithLight;
+import walden.com.opengl_es_test.shape.Cone;
 import walden.com.opengl_es_test.shape.Cube;
+import walden.com.opengl_es_test.shape.Cylinder;
+import walden.com.opengl_es_test.shape.Oval;
+import walden.com.opengl_es_test.shape.Square;
 import walden.com.opengl_es_test.shape.Triangle;
+import walden.com.opengl_es_test.shape.TriangleColorFull;
+import walden.com.opengl_es_test.shape.TriangleWithCamera;
 
 public class DrawGraphActivity extends AppCompatActivity {
 
@@ -39,7 +47,6 @@ public class DrawGraphActivity extends AppCompatActivity {
         mData.add("圆柱");
         mData.add("球体");
         mData.add("带光源的球体");
-        mData.add("intent");
     }
 
     private void initView() {
@@ -65,13 +72,31 @@ public class DrawGraphActivity extends AppCompatActivity {
                         setShape(Triangle.class);
                         break;
                     case 1:
-                        setShape(Triangle.class);
+                        setShape(TriangleWithCamera.class);
                         break;
                     case 2:
-                        setShape(Triangle.class);
+                        setShape(TriangleColorFull.class);
                         break;
                     case 3:
+                        setShape(Square.class);
+                        break;
+                    case 4:
+                        setShape(Oval.class);
+                        break;
+                    case 5:
                         setShape(Cube.class);
+                        break;
+                    case 6:
+                        setShape(Cone.class);
+                        break;
+                    case 7:
+                        setShape(Cylinder.class);
+                        break;
+                    case 8:
+                        setShape(Ball.class);
+                        break;
+                    case 9:
+                        setShape(BallWithLight.class);
                         break;
                     case 10:
                         break;
