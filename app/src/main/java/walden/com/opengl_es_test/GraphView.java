@@ -1,8 +1,11 @@
 package walden.com.opengl_es_test;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 import walden.com.opengl_es_test.shape.FGLRender;
 import walden.com.opengl_es_test.shape.shape;

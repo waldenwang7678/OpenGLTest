@@ -1,5 +1,6 @@
 package walden.com.opengl_es_test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import walden.com.opengl_es_test.adapter.CommenListAdapter;
+import walden.com.opengl_es_test.shape.Cube;
 import walden.com.opengl_es_test.shape.Triangle;
 
 public class DrawGraphActivity extends AppCompatActivity {
@@ -37,6 +39,7 @@ public class DrawGraphActivity extends AppCompatActivity {
         mData.add("圆柱");
         mData.add("球体");
         mData.add("带光源的球体");
+        mData.add("intent");
     }
 
     private void initView() {
@@ -53,19 +56,34 @@ public class DrawGraphActivity extends AppCompatActivity {
             }
         });
         list.setAdapter(adapter);
-        // glView.setRenderer(new Triangle());
-        glView.setShape(Triangle.class);
-
+        glView.setShape(Cube.class);  //默认图形
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        glView.setShape(Triangle.class);
+                        setShape(Triangle.class);
                         break;
+                    case 1:
+                        setShape(Triangle.class);
+                        break;
+                    case 2:
+                        setShape(Triangle.class);
+                        break;
+                    case 3:
+                        setShape(Cube.class);
+                        break;
+                    case 10:
+                        break;
+
                 }
             }
         });
+    }
+
+    private void setShape(Class clazz) {
+        glView.setShape(clazz);
+        startActivity(new Intent(DrawGraphActivity.this, EmptyActivity.class));
     }
 
     @Override
