@@ -63,7 +63,7 @@ public class DrawGraphActivity extends AppCompatActivity {
             }
         });
         list.setAdapter(adapter);
-        glView.setShape(Cube.class);  //默认图形
+        glView.setShape(Triangle.class);  //默认图形
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
