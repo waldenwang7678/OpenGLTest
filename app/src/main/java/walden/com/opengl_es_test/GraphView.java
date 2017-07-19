@@ -20,9 +20,9 @@ public class GraphView extends GLSurfaceView {
     }
 
     private void init() {
-        setEGLContextClientVersion(2);
+        setEGLContextClientVersion(2);                          //
         setRenderer(renderer = new FGLRender(this));
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);   //刷新模式
     }
 
     public void setShape(Class<? extends Shape> clazz) {

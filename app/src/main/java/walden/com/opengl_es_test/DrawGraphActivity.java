@@ -1,6 +1,5 @@
 package walden.com.opengl_es_test;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -108,7 +107,10 @@ public class DrawGraphActivity extends AppCompatActivity {
 
     private void setShape(Class clazz) {
         glView.setShape(clazz);
-        startActivity(new Intent(DrawGraphActivity.this, EmptyActivity.class));
+
+        //改变生命周期，GlSerfavceView 会重新绘制更新
+        glView.onPause();  //停止
+        glView.onResume();  //开始
     }
 
     @Override

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/OpenGLTest.iml" filepath="$PROJECT_DIR$/OpenGLTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/OpenGL_ES_Test.iml" filepath="$PROJECT_DIR$/OpenGL_ES_Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OpenGLText.iml" filepath="$PROJECT_DIR$/OpenGLText.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -11,10 +11,9 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 
-
 public class Triangle extends Shape {
 
-    private final String vertexShaderCode =    //定点着色器
+    private final String vertexShaderCode =    //顶点着色器
             "attribute vec4 vPosition;" +
                     "void main() {" +
                     "  gl_Position = vPosition;" +
@@ -30,11 +29,12 @@ public class Triangle extends Shape {
     private FloatBuffer vertexBuffer;
     private int mProgram;
 
-    static final int COORDS_PER_VERTEX = 3;
-    static float triangleCoords[] = {
-            0.5f, 0.5f, 0.0f,       // top
-            -0.5f, -0.5f, 0.0f, // bottom left
-            0.5f, -0.5f, 0.0f  // bottom right
+    static final int COORDS_PER_VERTEX = 3;  //每个顶点的 坐标数
+    //dingdian
+    static float triangleCoords[] = {        // 逆时针旋转
+            0.5f, 0.5f, 0,   //     top 顶点
+            -0.5f, -0.5f, 0, //     bottom left 左下
+            0.5f, -0.5f, 0   //     bottom right 右下
     };
     private int mPositionHandle;
     private int mColorHandle;
@@ -83,7 +83,7 @@ public class Triangle extends Shape {
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        GLES20.glClearColor(0.5f,0.5f,0.5f,1.0f);
+        GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     }
 
     @Override

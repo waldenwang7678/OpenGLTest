@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".DrawGraphActivity" />
-        <activity android:name=".EmptyActivity"></activity>
     </application>
 
 </manifest>

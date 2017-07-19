@@ -26,7 +26,7 @@ public class Cube extends Shape {
 
     private FloatBuffer vertexBuffer,colorBuffer;
     private ShortBuffer indexBuffer;
-    private final String vertexShaderCode =
+    private final String vertexShaderCode =    //顶点着色器 代码
             "attribute vec4 vPosition;" +
                     "uniform mat4 vMatrix;"+
                     "varying  vec4 vColor;"+
@@ -36,7 +36,7 @@ public class Cube extends Shape {
                     "  vColor=aColor;"+
                     "}";
 
-    private final String fragmentShaderCode =
+    private final String fragmentShaderCode =   // 片元着色器代码
             "precision mediump float;" +
                     "varying vec4 vColor;" +
                     "void main() {" +
