@@ -18,6 +18,7 @@ import walden.com.opengl_es_test.utils.ShaderUtils;
 
 /**
  * Created by wuwang on 2016/10/15
+ * 圆柱形
  */
 public class Cylinder extends Shape {
 
@@ -39,14 +40,15 @@ public class Cylinder extends Shape {
     public Cylinder(View mView){
         super(mView);
         ovalBottom=new Oval(mView);
-        ovalTop=new Oval(mView,height);
+        ovalTop=new Oval(mView,height); //创建顶部和底部的两个圆形
         ArrayList<Float> pos=new ArrayList<>();
         float angDegSpan=360f/n;
-        for(float i=0;i<360+angDegSpan;i+=angDegSpan){
-            pos.add((float) (radius* Math.sin(i* Math.PI/180f)));
+        for(float i=0;i<360+angDegSpan;i+=angDegSpan){ //创建一系列点, 用任意相邻的三个点构建三角形
+            pos.add((float) (radius* Math.sin(i* Math.PI/180f)));   //上
             pos.add((float)(radius* Math.cos(i* Math.PI/180f)));
             pos.add(height);
-            pos.add((float) (radius* Math.sin(i* Math.PI/180f)));
+
+            pos.add((float) (radius* Math.sin(i* Math.PI/180f))); //下
             pos.add((float)(radius* Math.cos(i* Math.PI/180f)));
             pos.add(0.0f);
         }
@@ -96,8 +98,11 @@ public class Cylinder extends Shape {
 //        int mColorHandle=GLES20.glGetUniformLocation(mProgram,"vColor");
 //        GLES20.glEnableVertexAttribArray(mColorHandle);
 //        GLES20.glUniform4fv(mColorHandle,1,colors,0);
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP,0,vSize);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP,0,vSize); //
         GLES20.glDisableVertexAttribArray(mPositionHandle);
+
+
+
         ovalBottom.setMatrix(mMVPMatrix);
         ovalBottom.onDrawFrame(gl);
         ovalTop.setMatrix(mMVPMatrix);

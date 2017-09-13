@@ -23,7 +23,7 @@ import walden.com.opengl_es_test.utils.ShaderUtils;
 
 
 /**
- * Description:圆锥
+ * Description:圆锥  分割的三角形就是顶点与底圆分割线段组成的三角形, 与绘制圆形类似
  */
 public class Cone extends Shape {
 

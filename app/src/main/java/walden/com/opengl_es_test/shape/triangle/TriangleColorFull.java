@@ -4,7 +4,7 @@
  * 
  * Created by Wuwang on 2016/9/30
  */
-package walden.com.opengl_es_test.shape;
+package walden.com.opengl_es_test.shape.triangle;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
@@ -17,13 +17,15 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import walden.com.opengl_es_test.shape.Shape;
+
 /**
  * Description:
  */
 public class TriangleColorFull extends Shape {
 
     private FloatBuffer vertexBuffer,colorBuffer;
-    private final String vertexShaderCode =
+    private final String vertexShaderCode =   //顶点着色器
             "attribute vec4 vPosition;" +
                     "uniform mat4 vMatrix;"+
                     "varying  vec4 vColor;"+
@@ -33,7 +35,7 @@ public class TriangleColorFull extends Shape {
                     "  vColor=aColor;"+
                     "}";
 
-    private final String fragmentShaderCode =
+    private final String fragmentShaderCode =  //片元着色器
             "precision mediump float;" +
                     "varying vec4 vColor;" +
                     "void main() {" +
@@ -43,7 +45,7 @@ public class TriangleColorFull extends Shape {
     private int mProgram;
 
     static final int COORDS_PER_VERTEX = 3;
-    static float triangleCoords[] = {
+    static float[] triangleCoords = {
             0.5f,  0.5f, 0.0f, // top
             -0.5f, -0.5f, 0.0f, // bottom left
             0.5f, -0.5f, 0.0f  // bottom right
@@ -64,32 +66,29 @@ public class TriangleColorFull extends Shape {
     private int mMatrixHandler;
 
     //设置颜色
-    float color[] = {
-            0.0f, 1.0f, 0.0f, 1.0f ,
-            1.0f, 0.0f, 0.0f, 1.0f,
-            0.0f, 0.0f, 1.0f, 1.0f
+   static float[] color = {
+            0.0f, 1.0f, 0.0f, 1.0f ,    // 绿
+            1.0f, 0.0f, 0.0f, 1.0f,     // 红
+            0.0f, 0.0f, 1.0f, 1.0f      //蓝
     };
 
     public TriangleColorFull(View mView) {
         super(mView);
-        ByteBuffer bb = ByteBuffer.allocateDirect(
-                triangleCoords.length * 4);
+        // 位置
+        ByteBuffer bb = ByteBuffer.allocateDirect(triangleCoords.length * 4);
         bb.order(ByteOrder.nativeOrder());
-
         vertexBuffer = bb.asFloatBuffer();
         vertexBuffer.put(triangleCoords);
         vertexBuffer.position(0);
-        ByteBuffer dd = ByteBuffer.allocateDirect(
-                color.length * 4);
+        //颜色
+        ByteBuffer dd = ByteBuffer.allocateDirect(color.length * 4);
         dd.order(ByteOrder.nativeOrder());
         colorBuffer = dd.asFloatBuffer();
         colorBuffer.put(color);
         colorBuffer.position(0);
 
-        int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER,
-                vertexShaderCode);
-        int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER,
-                fragmentShaderCode);
+        int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
+        int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode);
 
         //创建一个空的OpenGLES程序
         mProgram = GLES20.glCreateProgram();
@@ -132,16 +131,12 @@ public class TriangleColorFull extends Shape {
         //启用三角形顶点的句柄
         GLES20.glEnableVertexAttribArray(mPositionHandle);
         //准备三角形的坐标数据
-        GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX,
-                GLES20.GL_FLOAT, false,
-                vertexStride, vertexBuffer);
+        GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, vertexStride, vertexBuffer);
         //获取片元着色器的vColor成员的句柄
         mColorHandle = GLES20.glGetAttribLocation(mProgram, "aColor");
         //设置绘制三角形的颜色
         GLES20.glEnableVertexAttribArray(mColorHandle);
-        GLES20.glVertexAttribPointer(mColorHandle,4,
-                GLES20.GL_FLOAT,false,
-                0,colorBuffer);
+        GLES20.glVertexAttribPointer(mColorHandle,4, GLES20.GL_FLOAT,false, 0,colorBuffer);
         //绘制三角形
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
         //禁止顶点数组的句柄

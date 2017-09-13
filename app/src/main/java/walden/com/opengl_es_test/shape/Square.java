@@ -19,7 +19,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * Description:
+ * Description:  正方形
  */
 public class Square extends Shape {
 
@@ -42,14 +42,15 @@ public class Square extends Shape {
     private int mProgram;
 
     static final int COORDS_PER_VERTEX = 3;
-    static float triangleCoords[] = {
+    static float triangleCoords[] = {     // 逆时针
             -0.5f,  0.5f, 0.0f, // top left
             -0.5f, -0.5f, 0.0f, // bottom left
             0.5f, -0.5f, 0.0f, // bottom right
             0.5f,  0.5f, 0.0f  // top right
+
     };
 
-    static short index[]={
+    static short index[]={   //索引法绘制
       0,1,2,0,2,3
     };
 

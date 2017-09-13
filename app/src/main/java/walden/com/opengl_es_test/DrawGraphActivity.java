@@ -17,9 +17,9 @@ import walden.com.opengl_es_test.shape.Cube;
 import walden.com.opengl_es_test.shape.Cylinder;
 import walden.com.opengl_es_test.shape.Oval;
 import walden.com.opengl_es_test.shape.Square;
-import walden.com.opengl_es_test.shape.Triangle;
-import walden.com.opengl_es_test.shape.TriangleColorFull;
-import walden.com.opengl_es_test.shape.TriangleWithCamera;
+import walden.com.opengl_es_test.shape.triangle.Triangle;
+import walden.com.opengl_es_test.shape.triangle.TriangleColorFull;
+import walden.com.opengl_es_test.shape.triangle.TriangleWithCamera;
 
 public class DrawGraphActivity extends AppCompatActivity {
 
@@ -68,34 +68,34 @@ public class DrawGraphActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        setShape(Triangle.class);
+                        setShape(Triangle.class);  //三角形
                         break;
                     case 1:
-                        setShape(TriangleWithCamera.class);
+                        setShape(TriangleWithCamera.class); //正三角形
                         break;
                     case 2:
-                        setShape(TriangleColorFull.class);
+                        setShape(TriangleColorFull.class);  //带颜色三角形
                         break;
                     case 3:
-                        setShape(Square.class);
+                        setShape(Square.class);   //正方形
                         break;
                     case 4:
-                        setShape(Oval.class);
+                        setShape(Oval.class);   //圆形
                         break;
                     case 5:
-                        setShape(Cube.class);
+                        setShape(Cube.class);//正方体
                         break;
                     case 6:
-                        setShape(Cone.class);
+                        setShape(Cone.class);//圆锥
                         break;
                     case 7:
-                        setShape(Cylinder.class);
+                        setShape(Cylinder.class);//圆柱
                         break;
                     case 8:
-                        setShape(Ball.class);
+                        setShape(Ball.class);//球
                         break;
                     case 9:
-                        setShape(BallWithLight.class);
+                        setShape(BallWithLight.class);//光源球
                         break;
                     case 10:
                         break;

@@ -21,7 +21,7 @@ import walden.com.opengl_es_test.utils.ShaderUtils;
  */
 public class Ball extends Shape {
 
-    private float step=2f;
+    private float step=2f;  //步长
     private FloatBuffer vertexBuffer;
     private int vSize;
 
@@ -46,23 +46,29 @@ public class Ball extends Shape {
         // ( R * cos(a) * sin(b),y0 = R * sin(a),R * cos(a) * cos(b))
         // 其中，a为圆心到点的线段与xz平面的夹角，b为圆心到点的线段在xz平面的投影与z轴的夹角
         ArrayList<Float> data=new ArrayList<>();
+//        data.add(1.0f);
+//        data.add(1.0f);
+//        data.add(1.0f);
         float r1,r2;
         float h1,h2;
         float sin,cos;
-        for(float i=-90;i<90+step;i+=step){
-            r1 = (float) Math.cos(i * Math.PI / 180.0);
-            r2 = (float) Math.cos((i + step) * Math.PI / 180.0);
-            h1 = (float) Math.sin(i * Math.PI / 180.0);
-            h2 = (float) Math.sin((i + step) * Math.PI / 180.0);
-            // 固定纬度, 360 度旋转遍历一条纬线
+        for(float i=-90;i<90+step;i+=step){ //遍历纬度 180度 , 2度跳一次,
+            r1 = (float) Math.cos(i * Math.PI / 180.0);     // (0 ~ 1 ~ 0)   //半径
+            r2 = (float) Math.cos((i + step) * Math.PI / 180.0);             //增量后半径
+
+            // 高度坐标
+            h1 = (float) Math.sin(i * Math.PI / 180.0);     // (-1 ~ 0 ~ 1)  //高度
+            h2 = (float) Math.sin((i + step) * Math.PI / 180.0);             //增强后高度
             float step2=step*2;
+            // 固定纬度, 360旋转经度
             for (float j = 0.0f; j <360.0f+step; j +=step2 ) {
                 cos = (float) Math.cos(j * Math.PI / 180.0);
-                sin = -(float) Math.sin(j * Math.PI / 180.0);
+                sin = -(float) Math.sin(j * Math.PI / 180.0);        //(0 1 0 -1 0 )
+                    //更改绘制形式, 减少添加的顶点
+//                data.add(r2 * cos);     // x
+//                data.add(h2);           // y
+//                data.add(r2 * sin);     // z
 
-                data.add(r2 * cos);
-                data.add(h2);
-                data.add(r2 * sin);
                 data.add(r1 * cos);
                 data.add(h1);
                 data.add(r1 * sin);
@@ -91,6 +97,7 @@ public class Ball extends Shape {
         Matrix.setLookAtM(mViewMatrix, 0, 1.0f, -10.0f, -4.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
         //计算变换矩阵
         Matrix.multiplyMM(mMVPMatrix,0,mProjectMatrix,0,mViewMatrix,0);
+
     }
 
     @Override

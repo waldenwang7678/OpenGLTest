@@ -19,7 +19,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * Description:
+ * Description: 圆形
  */
 public class Oval extends Shape {
 
@@ -46,6 +46,7 @@ public class Oval extends Shape {
     private int mPositionHandle;
     private int mColorHandle;
 
+    //x 也 修正矩阵
     private float[] mViewMatrix = new float[16];
     private float[] mProjectMatrix = new float[16];
     private float[] mMVPMatrix = new float[16];
@@ -157,7 +158,7 @@ public class Oval extends Shape {
         mColorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
         //设置绘制三角形的颜色
         GLES20.glUniform4fv(mColorHandle, 1, color, 0);
-        //绘制三角形
+        //绘制三角形  GL_TRIANGLE_FAN 扇形绘制, 第一个点为圆点, 其他点围成弧形, FAN  成扇形散开
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, shapePos.length / 3);
         //禁止顶点数组的句柄
         GLES20.glDisableVertexAttribArray(mPositionHandle);
